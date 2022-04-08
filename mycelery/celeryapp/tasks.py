@@ -22,7 +22,7 @@ def send_email_task():
     send_mail('CELERY SEND IN MAIL SUCCESS',
               'CELLARY PASSED',
               'raj.kanani@plutustec.com',  # sender
-              ['bhaktiraiyani18@gmail.com'],  # receiver
+              ['raj.kanani1487@gmail.com'],  # receiver
               fail_silently=False
               )
     return None
