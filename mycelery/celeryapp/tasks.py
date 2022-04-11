@@ -3,7 +3,8 @@ from celery import shared_task
 # add mail
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
-
+from django.utils import timezone
+from datetime import timedelta
 from mycelery import settings
 
 
@@ -20,7 +21,7 @@ def test_func(self):
 @shared_task
 def send_email_task():
     sleep(5)
-    # parameter : (body , message body
+    # parameter : (body , message body )
     send_mail('CELERY SEND IN MAIL SUCCESS',
               'CELLARY AUTO SENT MAIL',
               'raj.kanani@plutustec.com',  # sender
@@ -34,6 +35,7 @@ def send_email_task():
 @shared_task(bind=True)
 def user_mail(self):
     users = get_user_model().objects.all()
+    # timezone.localtime(users.date_time) + timedelta(days=2) # add 2 days
     for user in users:
         mail_subject = 'this is celery testing'
         message = 'hello this is a testing'
