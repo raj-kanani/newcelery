@@ -16,9 +16,9 @@ app.config_from_object(settings, namespace='CELERY')
 
 # celery beat setting send mail every day for all users
 app.conf.beat_schedule = {
-    'send-mail-every-day-at-5': {
+    'send-mail-every-day-at-2': {
         'task': 'celeryapp.tasks.send_email_task',
-        'schedule': crontab(hour=6, minute=10),
+        'schedule': crontab(hour=11, minute=4),
         # 'args' :(2,)
     }
 }

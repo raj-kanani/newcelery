@@ -7,6 +7,7 @@ from django.core.mail import send_mail
 from mycelery import settings
 
 
+# testing mail in browser URL message
 @shared_task(bind=True)
 def test_func(self):
     # operations
@@ -15,12 +16,13 @@ def test_func(self):
     return 'Done'
 
 
+# sent auto mail
 @shared_task
 def send_email_task():
     sleep(5)
     # parameter : (body , message body
     send_mail('CELERY SEND IN MAIL SUCCESS',
-              'CELLARY PASSED',
+              'CELLARY AUTO SENT MAIL',
               'raj.kanani@plutustec.com',  # sender
               ['raj.kanani1487@gmail.com'],  # receiver
               fail_silently=False
@@ -29,17 +31,16 @@ def send_email_task():
 
 
 #  login user send mail .
-
 @shared_task(bind=True)
 def user_mail(self):
     users = get_user_model().objects.all()
     for user in users:
         mail_subject = 'this is celery testing'
-        message = 'celery message success in your mail id.'
+        message = 'hello this is a testing'
         to_email = user.email
         send_mail(
             subject=mail_subject,
-            message = message,
+            message=message,
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[to_email],
             fail_silently=True
