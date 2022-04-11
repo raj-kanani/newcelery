@@ -1,16 +1,13 @@
 from django.http import HttpResponse
-from django.shortcuts import render
 from .helper import user_mail
 from .tasks import test_func, send_email_task, user_mail
-from django.core.mail import send_mail
 from django_celery_beat.models import PeriodicTask, CrontabSchedule
-import json
 
 
 # testing for browser URL
 def test(request):
     result = test_func.delay()
-    print(result.backend)
+    print(result.backend)  # return database backend object
     return HttpResponse('mail testing success in browser URL. ')
 
 

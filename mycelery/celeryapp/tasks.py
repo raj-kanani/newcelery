@@ -3,8 +3,6 @@ from celery import shared_task
 # add mail
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
-from django.utils import timezone
-from datetime import timedelta
 from mycelery import settings
 
 
