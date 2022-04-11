@@ -9,7 +9,8 @@ import json
 
 # testing for browser URL
 def test(request):
-    test_func.delay()
+    result = test_func.delay()
+    print(result.backend)
     return HttpResponse('mail testing success in browser URL. ')
 
 
