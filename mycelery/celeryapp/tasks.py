@@ -7,6 +7,8 @@ from mycelery import settings
 
 
 # testing mail in browser URL message
+
+
 @shared_task(bind=True)
 def test_func(self):
     # operations
@@ -46,3 +48,5 @@ def user_mail(self):
             fail_silently=True
         )
         return "success mail passed"
+
+
