@@ -1,0 +1,30 @@
+Celery run command :- 
+
+Activate virtual environment ( source env/bin/activate )
+ 
+ 1) pip install celery . 
+ 2) pip install django-celery-results . 
+ 3) pip install django-celery-beat . 
+ 4) pip install redis .
+ 
+- check redis server work or not ? ( redis-cli ping )
+-check in terminal :-
+		 redis-cli :- 127.0.0.1:6379> ping ,
+		 			       set mykey raj ,
+		 			       get mykey
+
+- redis server shutdown : redis-cli shutdown		 			       
+
+ 5) pip install psycopg2-binary .
+ 6) celery -A (projectname).celery -l info .
+ 7) celery -A (projectname) worker --loglevel=debug / info  or celery -A (projectname) worker --pool=solo -l info
+ 
+ 8) flower : pip install flower 
+ 		
+- check flower in browser online or not ( celery -A (projectname) flower)
+ 	    		
+ 		check port in browser URL : - ( http://localhost:5555 )	
+ 		
+ - change flower port number	: - celery flower --port=5566	
+
+ 

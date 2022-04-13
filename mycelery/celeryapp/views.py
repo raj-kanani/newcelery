@@ -25,10 +25,8 @@ def mail_all(request):
 
 # every login user schedule any task / custom task & periodic task
 def send_mail_perticular_time(request):
-    schedule, created = CrontabSchedule.objects.get_or_create(hour=11, minute=53)
-    task = PeriodicTask.objects.create(crontab=schedule, name='schedule_task' + '6',
+    schedule, created = CrontabSchedule.objects.get_or_create(hour=11, minute=8)
+    task = PeriodicTask.objects.create(crontab=schedule, name='schedule_task' + '8',
                                        task='celeryapp.tasks.user_mail')  # name must be unique
     # args=json.dumps(([2, 3])) #args in pass the tuple in array value 2,3
     return HttpResponse('perticular task done')
-
-

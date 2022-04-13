@@ -8,7 +8,7 @@ from django.conf import settings
 from .settings import CELERY_BROKER_URL, CELERY_RESULT_BACKEND
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mycelery.settings')
-app = Celery('mycelery', broker=CELERY_BROKER_URL, backend=CELERY_RESULT_BACKEND)
+app = Celery('mycelery')
 app.conf.enable_utc = False
 app.conf.update(timezone='Asia/Kolkata')
 # Using a string here means the worker will not have to
@@ -20,7 +20,7 @@ app.config_from_object(settings, namespace='CELERY')  # CELERY means all celery 
 app.conf.beat_schedule = {
     'send-mail-every-day-at-2': {
         'task': 'celeryapp.tasks.send_email_task',
-        'schedule': crontab(hour=11, minute=4),
+        'schedule': crontab(hour=11, minute=10),
         # 'args' :(2,)
     }
 }
@@ -30,10 +30,10 @@ app.conf.beat_schedule = {
 app.autodiscover_tasks(settings.INSTALLED_APPS)
 
 
-# @app.task(bind=True)
-# def debug_task(self):
-#     print('Request: {0!r}'.format(self.request))
-
 @app.task(bind=True)
 def debug_task(self):
-    print(f'Request: {self.request!r}')
+    print('Request: {0!r}'.format(self.request))
+
+# @app.task(bind=True)
+# def debug_task(self):
+#     print(f'Request: {self.request!r}')
